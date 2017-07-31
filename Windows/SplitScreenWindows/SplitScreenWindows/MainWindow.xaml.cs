@@ -1,17 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows.Forms;
+using System.Runtime.InteropServices;
 
 namespace SplitScreenWindows
 {
@@ -20,9 +11,34 @@ namespace SplitScreenWindows
     /// </summary>
     public partial class MainWindow : Window
     {
+        Hooks WinHook;
         public MainWindow()
         {
             InitializeComponent();
+            WinHook = new Hooks();
+
+            NotifyIcon ni = new NotifyIcon();
+            ni.Icon = Properties.Resources.testIcon;
+            ni.Visible = true;
+            ni.DoubleClick += ShowWindow;
+        }
+
+        void ShowWindow(object sender, EventArgs args)
+        {
+            this.Show();
+            this.WindowState = System.Windows.WindowState.Normal;
+        }
+
+        protected override void OnStateChanged(EventArgs e)
+        {
+            if (WindowState == System.Windows.WindowState.Minimized)
+                this.Hide();
+            base.OnStateChanged(e);
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            WinHook.Unhook();
         }
     }
 }

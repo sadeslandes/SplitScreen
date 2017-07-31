@@ -5,10 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SplitScreenWindows"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="31" Margin="144,61,0,0" TextWrapping="Wrap" Text="Mouse moving" VerticalAlignment="Top" Width="57"/>
-        <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Height="31" Margin="230,61,0,0" TextWrapping="Wrap" Text="Mouse Down" VerticalAlignment="Top" Width="57"/>
-        <TextBlock x:Name="textBlock_Copy1" HorizontalAlignment="Left" Height="31" Margin="309,61,0,0" TextWrapping="Wrap" Text="Window Drag" VerticalAlignment="Top" Width="57"/>
-    </Grid>
+        Title="MainWindow" Height="350" Width="525" 
+        Visibility="Hidden"
+        Closed="Window_Closed">
 </Window>
